@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next -p 8080",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -13,10 +13,13 @@
   "dependencies": {
     "add": "^2.0.6",
     "aos": "^2.3.4",
+    "axios": "^0.26.1",
     "classnames": "^2.3.1",
+    "dotenv": "^16.0.0",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-number-format": "^4.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
