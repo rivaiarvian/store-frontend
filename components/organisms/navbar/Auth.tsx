@@ -1,9 +1,27 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
-interface AuthProps {
-  isLogin?: boolean;
-}
-export default function Auth(props: PArtial<AuthProps>) {
-  const { isLogin } = props;
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
+
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({
+    avatar: "img/avatar-1.png",
+  });
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      const jwtToken = atob(token);
+      const payload = jwt_decode(jwtToken);
+      const user = payload.player;
+      const IMG = process.env.NEXT_PUBLIC_IMAGE;
+      user.avatar = `${IMG}/${user.avatar}`;
+      setIsLogin(true);
+      setUser(user);
+    }
+  }, []);
+
   if (isLogin) {
     return (
       <li className="nav-item my-auto dropdown d-flex">
@@ -18,7 +36,7 @@ export default function Auth(props: PArtial<AuthProps>) {
               aria-expanded="false"
             >
               <img
-                src="img/avatar-1.png"
+                src={user.avatar}
                 className="rounded-circle"
                 width="40"
                 height="40"
