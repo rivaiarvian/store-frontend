@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Link from "next/link";
-
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
-import { setLogin } from "../../../services/auth";
 import { useRouter } from "next/router";
+
+import { toast } from "react-toastify";
+import { setLogin } from "../../../services/auth";
 import Cookies from "js-cookie";
 
 export default function SigninForm() {
@@ -83,7 +82,6 @@ export default function SigninForm() {
           </a>
         </Link>
       </div>
-      <ToastContainer />
     </>
   );
 }

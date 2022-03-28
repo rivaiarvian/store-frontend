@@ -7,6 +7,7 @@ import {
 } from "../../../services/data-types";
 import NominalItem from "./nominalItem";
 import PaymentItem from "./PaymentItem";
+import { toast } from "react-toastify";
 
 interface TopUpFormProps {
   nominals: NominalTypes[];
@@ -40,7 +41,7 @@ export default function TopUpForm(props: TopUpFormProps) {
       nominalItem === {} ||
       paymentItem === {}
     ) {
-      alert("Silakan isi semua data");
+      toast.error("Silakan isi semua data");
     } else {
       const data = {
         verifyID,
