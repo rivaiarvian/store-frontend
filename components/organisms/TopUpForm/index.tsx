@@ -1,4 +1,10 @@
-import { PaymentTypes, NominalTypes } from "../../../services/data-types";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import {
+  PaymentTypes,
+  NominalTypes,
+  BanksTypes,
+} from "../../../services/data-types";
 import NominalItem from "./nominalItem";
 import PaymentItem from "./PaymentItem";
 
@@ -9,14 +15,50 @@ interface TopUpFormProps {
 
 export default function TopUpForm(props: TopUpFormProps) {
   const { nominals, payments } = props;
+  const [verifyID, setVerifyID] = useState("");
+  const [bankAccountName, setBankAccountName] = useState("");
+  const [nominalItem, setNominalItem] = useState({});
+  const [paymentItem, setPaymentItem] = useState({});
+
+  const router = useRouter();
+
+  const onNominalItemChange = (data: NominalTypes) => {
+    setNominalItem(data);
+  };
+  const onPaymentItemChange = (payment: PaymentTypes, bank: BanksTypes) => {
+    const data = {
+      payment,
+      bank,
+    };
+    setPaymentItem(data);
+  };
+
+  const onSubmit = () => {
+    if (
+      verifyID === "" ||
+      bankAccountName === "" ||
+      nominalItem === {} ||
+      paymentItem === {}
+    ) {
+      alert("Silakan isi semua data");
+    } else {
+      const data = {
+        verifyID,
+        bankAccountName,
+        nominalItem,
+        paymentItem,
+      };
+
+      localStorage.setItem("data-topup", JSON.stringify(data));
+
+      router.push("/checkout");
+    }
+  };
   return (
     <form action="./checkout.html" method="POST">
       <div className="pt-md-50 pt-30">
         <div className="">
-          <label
-            htmlFor="ID"
-            className="form-label text-lg fw-medium color-palette-1 mb-10"
-          >
+          <label className="form-label text-lg fw-medium color-palette-1 mb-10">
             Verify ID
           </label>
           <input
@@ -26,6 +68,8 @@ export default function TopUpForm(props: TopUpFormProps) {
             name="ID"
             aria-describedby="verifyID"
             placeholder="Enter your ID"
+            value={verifyID}
+            onChange={(e) => setVerifyID(e.target.value)}
           />
         </div>
       </div>
@@ -41,6 +85,7 @@ export default function TopUpForm(props: TopUpFormProps) {
               coinName={nominal.coinName}
               coinQuantity={nominal.CoinQuantity}
               price={nominal.price}
+              onChange={() => onNominalItemChange(nominal)}
             />
           ))}
 
@@ -60,6 +105,7 @@ export default function TopUpForm(props: TopUpFormProps) {
                   bankID={bank._id}
                   type={payment.type}
                   name={bank.bankName}
+                  onChange={() => onPaymentItemChange(payment, bank)}
                 />
               ))
             )}
@@ -81,16 +127,18 @@ export default function TopUpForm(props: TopUpFormProps) {
           name="bankAccount"
           aria-describedby="bankAccount"
           placeholder="Enter your Bank Account Name"
+          value={bankAccountName}
+          onChange={(e) => setBankAccountName(e.target.value)}
         />
       </div>
       <div className="d-sm-block d-flex flex-column w-100">
-        <a
-          href="/checkout"
-          type="submit"
+        <button
+          type="button"
           className="btn btn-submit rounded-pill fw-medium text-white border-0 text-lg"
+          onClick={onSubmit}
         >
           Continue
-        </a>
+        </button>
       </div>
     </form>
   );
