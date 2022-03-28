@@ -16,6 +16,7 @@ export default function Auth() {
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
+      //clientside
       const jwtToken = atob(token);
       const payload: JWTPayloadTypes = jwtDecode(jwtToken);
       const userFromPayload: UserTypes = payload.player;
