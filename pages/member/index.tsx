@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import OverViewContent from "../../components/organisms/Member/OverViewContent";
 import Sidebar from "../../components/organisms/Member/Sidebar";
-import { JWTPayloadTypes, UserTypes } from "../../../services/data-types";
+import { JWTPayloadTypes, UserTypes } from "../../services/data-types";
 
 export default function Member() {
   return (
