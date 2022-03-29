@@ -32,6 +32,7 @@ export default function Detail() {
       getVoucherDetailAPI(query.id);
     }
   }, [isReady]);
+
   return (
     <>
       <Navbar />

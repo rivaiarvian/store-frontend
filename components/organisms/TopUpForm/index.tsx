@@ -84,7 +84,7 @@ export default function TopUpForm(props: TopUpFormProps) {
               key={`nominal-item-${i}`}
               _id={nominal.id}
               coinName={nominal.coinName}
-              coinQuantity={nominal.CoinQuantity}
+              coinQuantity={nominal.coinQuantity}
               price={nominal.price}
               onChange={() => onNominalItemChange(nominal)}
             />
