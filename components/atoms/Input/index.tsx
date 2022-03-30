@@ -15,8 +15,6 @@ export default function Input(props: InputProps) {
       <input
         type="text"
         className="form-control rounded-pill text-lg"
-        id="name"
-        name="name"
         aria-describedby="name"
         placeholder="Enter your name"
         {...nativeProps}
