@@ -30,7 +30,7 @@ export default function Story() {
                 <br className="d-sm-block d-none" /> pemenang sejati
               </p>
               <div className="d-md-block d-flex flex-column w-100">
-                <Link href="/#">
+                <Link href="/">
                   <a
                     className="btn btn-read text-lg rounded-pill"
                     role="button"

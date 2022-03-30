@@ -6,12 +6,13 @@ import { setSignUp } from "../services/auth";
 import { getGameCategory } from "../services/player";
 
 import { toast } from "react-toastify";
+import { CategoryTypes } from "../services/data-types";
 
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState("");
-  const [image, setImage] = useState("");
-  const [imagePreview, setImagePreview] = useState("/icon/upload.svg");
+  const [imagePreview, setImagePreview] = useState<any>("/icon/upload.svg");
+  const [image, setImage] = useState<any>("");
   const [localForm, setLocalForm] = useState({
     name: "",
     email: "",
@@ -34,7 +35,7 @@ export default function SignUpPhoto() {
 
   const onSubmit = async () => {
     const getLocalForm = await localStorage.getItem("user-form");
-    const form = JSON.parse(getLocalForm);
+    const form = JSON.parse(getLocalForm!);
     const data = new FormData();
 
     data.append("avatar", image);
@@ -78,7 +79,7 @@ export default function SignUpPhoto() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(e) => {
-                      const img = e.target.files[0];
+                      const img = e.target.files![0];
                       setImagePreview(URL.createObjectURL(img));
                       return setImage(img);
                     }}
@@ -106,7 +107,7 @@ export default function SignUpPhoto() {
                   value={favorite}
                   onChange={(e) => setFavorite(e.target.value)}
                 >
-                  {categories.map((category, i) => (
+                  {categories.map((category: CategoryTypes, i) => (
                     <option value={category._id} key={`category-${i}`}>
                       {category.name}
                     </option>
@@ -124,7 +125,7 @@ export default function SignUpPhoto() {
               >
                 Create My Account
               </button>
-              <Link href="#">
+              <Link href="/">
                 <a
                   className="btn btn-tnc text-lg color-palette-1 text-decoration-underline pt-15"
                   role="button"

@@ -2,9 +2,9 @@ import Image from "next/image";
 import NumberFormat from "react-number-format";
 
 interface CategoryProps {
-  children: ReactNode;
+  children: React.ReactNode;
   nominal: number;
-  icon: "ic-desktop" | "ic-mobile";
+  icon: string;
 }
 export default function Category(props: CategoryProps) {
   const { children, nominal, icon } = props;

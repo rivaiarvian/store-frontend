@@ -1,9 +1,10 @@
+import { toast } from "react-toastify";
+import NumberFormat from "react-number-format";
 import { useCallback, useEffect, useState } from "react";
 import { getMemberTransaction } from "../../../../services/member";
 import ButtonTab from "./ButtonTab";
 import TableRow from "./TableRow";
-import { toast } from "react-toastify";
-import NumberFormat from "react-number-format";
+
 import { HistoryTransactionTypes } from "../../../../services/data-types";
 
 export default function TransactionsContent() {
@@ -21,13 +22,13 @@ export default function TransactionsContent() {
       setTotal(response.data.total.value);
       setData(response.data.data);
     }
-  });
+  }, []);
 
   useEffect(() => {
     GetMemberTransactionAPI("all");
   }, []);
 
-  const onTabClick = (value) => {
+  const onTabClick = (value: string) => {
     setTab(value);
     GetMemberTransactionAPI(value);
   };

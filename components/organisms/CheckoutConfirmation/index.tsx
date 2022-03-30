@@ -1,7 +1,8 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { setCheckout } from "../../../services/player";
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { setCheckout } from '../../../services/player';
+import { CheckoutTypes } from '../../../services/data-types';
 
 export default function CheckoutConfirmation() {
   const [checkbox, setCheckbox] = useState(false);
@@ -18,13 +19,13 @@ export default function CheckoutConfirmation() {
     if (!checkbox) {
       toast.error("Pastikan anda telah melakukan pembayaran");
     } else {
-      const data = {
+      const data: CheckoutTypes = {
         voucher: dataItem._id,
         nominal: dataTopUp.nominalItem._id,
         payment: dataTopUp.paymentItem.payment._id,
         bank: dataTopUp.paymentItem.bank._id,
         name: dataTopUp.bankAccountName,
-        accountUSer: dataTopUp.verifyID,
+        accountUser: dataTopUp.verifyID,
       };
       const response = await setCheckout(data);
       if (response.error) {

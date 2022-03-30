@@ -5,7 +5,7 @@ import {
   NominalTypes,
   BanksTypes,
 } from "../../../services/data-types";
-import NominalItem from "./nominalItem";
+import NominalItem from "./NominalItem";
 import PaymentItem from "./PaymentItem";
 import { toast } from "react-toastify";
 
@@ -56,7 +56,7 @@ export default function TopUpForm(props: TopUpFormProps) {
     }
   };
   return (
-    <form action="./checkout.html" method="POST">
+    <form action="" method="POST">
       <div className="pt-md-50 pt-30">
         <div className="">
           <label className="form-label text-lg fw-medium color-palette-1 mb-10">
@@ -82,7 +82,7 @@ export default function TopUpForm(props: TopUpFormProps) {
           {nominals.map((nominal, i) => (
             <NominalItem
               key={`nominal-item-${i}`}
-              _id={nominal.id}
+              _id={nominal._id}
               coinName={nominal.coinName}
               coinQuantity={nominal.coinQuantity}
               price={nominal.price}

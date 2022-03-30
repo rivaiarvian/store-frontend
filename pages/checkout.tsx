@@ -1,9 +1,8 @@
+import Image from "next/image";
+import { UserTypes } from "../services/data-types";
 import CheckoutConfirmation from "../components/organisms/CheckoutConfirmation";
 import CheckoutDetail from "../components/organisms/CheckoutDetail";
 import CheckoutItem from "../components/organisms/CheckoutItem";
-import Image from "next/image";
-import jwtDecode from "jwt-decode";
-import { JWTPayloadTypes, UserTypes } from "../../../services/data-types";
 
 interface CheckoutProps {
   user: UserTypes;
@@ -53,16 +52,10 @@ export async function getServerSideProps({ req }: getServerSideProps) {
       },
     };
   }
-  //serverside
-  const jwtToken = Buffer.from(token, "base64").toString("ascii");
-  const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-  const userFromPayload: UserTypes = payload.player;
-  const IMG = process.env.NEXT_PUBLIC_IMAGE;
-  userFromPayload.avatar = `${IMG}/${userFromPayload.avatar}`;
 
   return {
     props: {
-      user: userFromPayload,
+      user: {},
     },
   };
 }

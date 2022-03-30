@@ -5,11 +5,11 @@ interface FooterItemProps {
   desc1: string;
   desc2: string;
   desc3: string;
-  desc4: string;
+  desc4?: string;
   href: string;
 }
 export default function FooterItem(props: FooterItemProps) {
-  const { title, desc1, desc2, desc3, desc4, href } = props;
+  const { title, desc1, desc2, desc3, desc4, href = "/" } = props;
   return (
     <div className="col-md-4 col-6 mb-lg-0 mb-25">
       <p className="text-lg fw-semibold color-palette-1 mb-12">{title}</p>

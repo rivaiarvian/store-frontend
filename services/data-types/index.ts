@@ -55,7 +55,7 @@ export interface CheckoutTypes {
   nominal: string;
   payment: string;
   bank: string;
-  nam: string;
+  name: string;
   accountUser: string;
 }
 
@@ -80,7 +80,7 @@ export interface HistoryTransactionTypes {
   historyVoucherTopup: HistoryVoucherTopupTypes;
   value: number;
   status: string;
-  accountUser: String;
+  accountUser: string;
   tax: number;
   name: string;
   historyPayment: HistoryPaymentTypes;

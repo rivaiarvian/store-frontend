@@ -2,8 +2,8 @@ import NumberFormat from "react-number-format";
 
 interface NominalItemProps {
   _id: string;
-  coinName: number;
-  coinQuantity: string;
+  coinName: string;
+  coinQuantity: number;
   price: number;
   onChange: () => void;
 }
