@@ -17,22 +17,22 @@ export default function CheckoutConfirmation() {
 
     if (!checkbox) {
       toast.error("Pastikan anda telah melakukan pembayaran");
-    }
-
-    const data = {
-      voucher: dataItem._id,
-      nominal: dataTopUp.nominalItem._id,
-      payment: dataTopUp.paymentItem.payment._id,
-      bank: dataTopUp.paymentItem.bank._id,
-      name: dataTopUp.bankAccountName,
-      accountUSer: dataTopUp.verifyID,
-    };
-    const response = await setCheckout(data);
-    if (response.error) {
-      toast.error(response.message);
     } else {
-      toast.success("Checkout berhasil");
-      router.push("/complete-checkout");
+      const data = {
+        voucher: dataItem._id,
+        nominal: dataTopUp.nominalItem._id,
+        payment: dataTopUp.paymentItem.payment._id,
+        bank: dataTopUp.paymentItem.bank._id,
+        name: dataTopUp.bankAccountName,
+        accountUSer: dataTopUp.verifyID,
+      };
+      const response = await setCheckout(data);
+      if (response.error) {
+        toast.error(response.message);
+      } else {
+        toast.success("Checkout berhasil");
+        router.push("/complete-checkout");
+      }
     }
   };
   return (
